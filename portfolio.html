@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dian Erasmus — Creative Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bark: #3B2F1E;
+    --bark-mid: #5C4530;
+    --bark-light: #8B6A4A;
+    --clay: #B87B52;
+    --clay-light: #D4A07A;
+    --sand: #E8D5BC;
+    --cream: #F5EFE6;
+    --parchment: #FAF7F2;
+    --moss: #5A6B3A;
+    --moss-light: #7A8F52;
+    --sage: #A8B88A;
+    --sage-light: #C8D4B0;
+    --white: #FFFFFF;
+    --text-dark: #2A1F12;
+    --text-mid: #5C4530;
+    --text-muted: #8B7355;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--parchment);
+    color: var(--text-dark);
+    font-size: 16px;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(250, 247, 242, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--sand);
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--bark);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--clay); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 100px 5% 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 60%, rgba(184, 123, 82, 0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 10% 30%, rgba(90, 107, 58, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-texture {
+    position: absolute;
+    top: 0; right: 0;
+    width: 45%;
+    height: 100%;
+    background:
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(184, 123, 82, 0.04) 40px,
+        rgba(184, 123, 82, 0.04) 41px
+      );
+    pointer-events: none;
+  }
+
+  .hero-content {
+    max-width: 700px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--moss);
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 8vw, 80px);
+    font-weight: 400;
+    line-height: 1.05;
+    color: var(--bark);
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-name span {
+    color: var(--clay);
+    font-style: italic;
+  }
+
+  .hero-tagline {
+    font-size: 18px;
+    color: var(--text-mid);
+    max-width: 520px;
+    margin-bottom: 16px;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .hero-services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+
+  .pill {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid;
+  }
+
+  .pill-clay {
+    background: rgba(184, 123, 82, 0.12);
+    border-color: var(--clay-light);
+    color: var(--bark-mid);
+  }
+
+  .pill-moss {
+    background: rgba(90, 107, 58, 0.1);
+    border-color: var(--moss-light);
+    color: var(--moss);
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    background: var(--bark);
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    border-radius: 4px;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--bark-mid); transform: translateY(-1px); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    background: transparent;
+    color: var(--bark);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    border-radius: 4px;
+    border: 1px solid var(--bark-light);
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  }
+
+  .btn-secondary:hover { border-color: var(--bark); background: rgba(59, 47, 30, 0.05); transform: translateY(-1px); }
+
+  /* SECTION COMMON */
+  section {
+    padding: 90px 5%;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 400;
+    color: var(--bark);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 540px;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+
+  /* ABOUT */
+  #about {
+    background: var(--cream);
+    border-top: 1px solid var(--sand);
+    border-bottom: 1px solid var(--sand);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+    max-width: 1100px;
+  }
+
+  .about-text p {
+    font-size: 16px;
+    color: var(--text-mid);
+    margin-bottom: 18px;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .about-text p:last-child { margin-bottom: 0; }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .stat-card {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: 8px;
+    padding: 20px;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    color: var(--clay);
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+
+  /* SERVICES */
+  #services {
+    background: var(--parchment);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1100px;
+  }
+
+  .service-card {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: 8px;
+    padding: 32px 28px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .service-card:hover {
+    border-color: var(--clay-light);
+    transform: translateY(-3px);
+  }
+
+  .service-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+
+  .icon-clay { background: rgba(184, 123, 82, 0.15); color: var(--clay); }
+  .icon-moss { background: rgba(90, 107, 58, 0.12); color: var(--moss); }
+  .icon-bark { background: rgba(59, 47, 30, 0.1); color: var(--bark-mid); }
+
+  .service-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--bark);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .service-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 12px;
+    background: var(--cream);
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* WORK */
+  #work {
+    background: var(--cream);
+    border-top: 1px solid var(--sand);
+    border-bottom: 1px solid var(--sand);
+  }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    max-width: 1100px;
+  }
+
+  .work-card {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .work-card:hover {
+    border-color: var(--clay-light);
+    transform: translateY(-3px);
+  }
+
+  .work-thumb {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .thumb-1 { background: linear-gradient(135deg, #D4A07A 0%, #8B6A4A 100%); }
+  .thumb-2 { background: linear-gradient(135deg, #7A8F52 0%, #3B6D11 100%); }
+  .thumb-3 { background: linear-gradient(135deg, #5C4530 0%, #3B2F1E 100%); }
+  .thumb-4 { background: linear-gradient(135deg, #B87B52 0%, #7A8F52 100%); }
+  .thumb-5 { background: linear-gradient(135deg, #5A6B3A 0%, #B87B52 100%); }
+  .thumb-6 { background: linear-gradient(135deg, #8B6A4A 0%, #5A6B3A 100%); }
+
+  .thumb-label {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    background: rgba(0,0,0,0.25);
+    padding: 3px 10px;
+    border-radius: 12px;
+  }
+
+  .work-info {
+    padding: 20px;
+  }
+
+  .work-type {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 6px;
+  }
+
+  .work-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    color: var(--bark);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .work-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .work-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--moss);
+    margin-top: 12px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+
+  .work-link:hover { color: var(--clay); }
+
+  /* SKILLS */
+  #skills {
+    background: var(--parchment);
+  }
+
+  .skills-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+    max-width: 1100px;
+  }
+
+  .skill-group-title {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--sand);
+  }
+
+  .skill-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(232, 213, 188, 0.5);
+  }
+
+  .skill-name {
+    font-size: 14px;
+    color: var(--text-mid);
+  }
+
+  .skill-bar-wrap {
+    width: 100px;
+    height: 3px;
+    background: var(--sand);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .skill-bar {
+    height: 100%;
+    border-radius: 2px;
+    background: var(--clay);
+  }
+
+  .skill-bar.moss { background: var(--moss); }
+
+  /* CONTACT */
+  #contact {
+    background: var(--bark);
+    color: var(--cream);
+  }
+
+  #contact .section-label { color: var(--sage); }
+  #contact .section-title { color: var(--cream); }
+  #contact .section-sub { color: var(--sand); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+    max-width: 1100px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .contact-detail-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--sage);
+    margin-bottom: 3px;
+    font-weight: 500;
+  }
+
+  .contact-detail-val {
+    font-size: 14px;
+    color: var(--sand);
+  }
+
+  .contact-detail-val a {
+    color: var(--clay-light);
+    text-decoration: none;
+  }
+
+  .contact-detail-val a:hover { text-decoration: underline; }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 11px 14px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 4px;
+    color: var(--cream);
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-input::placeholder { color: rgba(245, 239, 230, 0.35); }
+  .form-input:focus { border-color: var(--clay-light); }
+
+  textarea.form-input { resize: vertical; min-height: 110px; }
+
+  .btn-send {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    background: var(--clay);
+    color: var(--cream);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.2s, transform 0.15s;
+    align-self: flex-start;
+  }
+
+  .btn-send:hover { background: var(--bark-light); transform: translateY(-1px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--text-dark);
+    padding: 28px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    color: var(--sand);
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 40px;
+    height: 2px;
+    background: var(--clay);
+    margin-bottom: 40px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .about-grid, .contact-grid, .skills-layout { grid-template-columns: 1fr; gap: 32px; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero { padding-top: 80px; }
+    .hero-texture { display: none; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#hero">Dian Erasmus</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-texture"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Creative Portfolio</p>
+    <h1 class="hero-name">Dian<br><span>Erasmus</span></h1>
+    <p class="hero-tagline">Video editor, content creator, and social media manager based in Gauteng, South Africa.</p>
+    <div class="hero-services">
+      <span class="pill pill-clay">Video Editing</span>
+      <span class="pill pill-moss">Social Media Management</span>
+      <span class="pill pill-clay">Content Creation</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#work" class="btn-primary">View My Work →</a>
+      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <p class="section-label">About Me</p>
+      <h2 class="section-title">Storytelling through video &amp; strategy</h2>
+      <div class="divider"></div>
+      <p>I'm a video editor and social media manager with a background in engineering and a passion for the outdoors. I bring an analytical mindset and a creative eye to every project — whether it's a short-form Reel, a YouTube edit, or a full content strategy.</p>
+      <p>I work primarily in DaVinci Resolve and have hands-on experience producing and editing content across YouTube, Instagram, and TikTok. I understand what makes content perform — and I build it with purpose.</p>
+      <p>Based on a smallholding in Gauteng, I'm available for freelance and employed work with local businesses and brands across South Africa.</p>
+    </div>
+    <div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Years editing experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">DaVinci</div>
+          <div class="stat-label">Primary editing tool</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">SA</div>
+          <div class="stat-label">Based in Gauteng</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">Full</div>
+          <div class="stat-label">End-to-end service</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <p class="section-label">What I Offer</p>
+  <h2 class="section-title">Services</h2>
+  <p class="section-sub">End-to-end content solutions — from raw footage to published post.</p>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-icon icon-clay">🎬</div>
+      <h3 class="service-title">Video Editing</h3>
+      <p class="service-desc">Professional editing for YouTube, Reels, TikTok, and branded content. Colour grading, sound design, captions, and motion graphics included.</p>
+      <div class="service-tags">
+        <span class="tag">DaVinci Resolve</span>
+        <span class="tag">Colour Grading</span>
+        <span class="tag">Short-form</span>
+        <span class="tag">Long-form</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon icon-moss">📱</div>
+      <h3 class="service-title">Social Media Management</h3>
+      <p class="service-desc">Content calendars, copywriting, scheduling, community management, and analytics reporting for Instagram, Facebook, TikTok, and LinkedIn.</p>
+      <div class="service-tags">
+        <span class="tag">Strategy</span>
+        <span class="tag">Copywriting</span>
+        <span class="tag">Analytics</span>
+        <span class="tag">Scheduling</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon icon-bark">✨</div>
+      <h3 class="service-title">Content Creation</h3>
+      <p class="service-desc">Full content packages: ideation, scripting, filming guidance, editing, and publishing. Built around your brand's voice and audience.</p>
+      <div class="service-tags">
+        <span class="tag">Reels & TikToks</span>
+        <span class="tag">YouTube</span>
+        <span class="tag">Canva Graphics</span>
+        <span class="tag">Brand Content</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <p class="section-label">Portfolio</p>
+  <h2 class="section-title">Selected Work</h2>
+  <p class="section-sub">A selection of projects across video, social, and content creation. Links coming soon — replace these with your actual work.</p>
+  <div class="work-grid">
+
+    <a href="#" class="work-card">
+      <div class="work-thumb thumb-1">
+        <span style="color:rgba(255,255,255,0.9); font-family:'Playfair Display',serif; font-size:18px; z-index:1;">YouTube Edit</span>
+        <div class="thumb-label">Video Editing</div>
+      </div>
+      <div class="work-info">
+        <p class="work-type">Video Editing</p>
+        <h3 class="work-title">Personal YouTube Channel</h3>
+        <p class="work-desc">Long-form content edited and colour graded in DaVinci Resolve. Includes custom intro, captions, and sound mix.</p>
+        <span class="work-link">Add link → </span>
+      </div>
+    </a>
+
+    <a href="#" class="work-card">
+      <div class="work-thumb thumb-2">
+        <span style="color:rgba(255,255,255,0.9); font-family:'Playfair Display',serif; font-size:18px;">Social Campaign</span>
+        <div class="thumb-label">Social Media</div>
+      </div>
+      <div class="work-info">
+        <p class="work-type">Social Media Management</p>
+        <h3 class="work-title">Brand Instagram Growth</h3>
+        <p class="work-desc">Content calendar, Reels editing, copywriting, and scheduling for a local business. Consistent brand voice across platforms.</p>
+        <span class="work-link">Add link →</span>
+      </div>
+    </a>
+
+    <a href="#" class="work-card">
+      <div class="work-thumb thumb-3">
+        <span style="color:rgba(255,255,255,0.9); font-family:'Playfair Display',serif; font-size:18px;">Short-form</span>
+        <div class="thumb-label">Content Creation</div>
+      </div>
+      <div class="work-info">
+        <p class="work-type">Content Creation</p>
+        <h3 class="work-title">Reels & TikTok Package</h3>
+        <p class="work-desc">Series of short-form vertical videos edited for social. Hook-driven format, trending audio, captions, and optimised thumbnails.</p>
+        <span class="work-link">Add link →</span>
+      </div>
+    </a>
+
+    <a href="#" class="work-card">
+      <div class="work-thumb thumb-4">
+        <span style="color:rgba(255,255,255,0.9); font-family:'Playfair Display',serif; font-size:18px;">Event Coverage</span>
+        <div class="thumb-label">Video Editing</div>
+      </div>
+      <div class="work-info">
+        <p class="work-type">Video Editing</p>
+        <h3 class="work-title">Event Highlight Reel</h3>
+        <p class="work-desc">Fast-paced highlight edit for a live event. Synced to music, colour graded, and delivered in multiple aspect ratios.</p>
+        <span class="work-link">Add link →</span>
+      </div>
+    </a>
+
+    <a href="#" class="work-card">
+      <div class="work-thumb thumb-5">
+        <span style="color:rgba(255,255,255,0.9); font-family:'Playfair Display',serif; font-size:18px;">Strategy</span>
+        <div class="thumb-label">Social Media</div>
+      </div>
+      <div class="work-info">
+        <p class="work-type">Social Media Management</p>
+        <h3 class="work-title">Monthly Content Calendar</h3>
+        <p class="work-desc">30-day content plan including post designs, captions, hashtag strategy, and performance tracking for a Gauteng-based client.</p>
+        <span class="work-link">Add link →</span>
+      </div>
+    </a>
+
+    <a href="#" class="work-card">
+      <div class="work-thumb thumb-6">
+        <span style="color:rgba(255,255,255,0.9); font-family:'Playfair Display',serif; font-size:18px;">Branded Video</span>
+        <div class="thumb-label">Content Creation</div>
+      </div>
+      <div class="work-info">
+        <p class="work-type">Content Creation</p>
+        <h3 class="work-title">Product Promo Video</h3>
+        <p class="work-desc">Scripted, edited, and graded promotional video for a local brand. Delivered for Instagram feed, Stories, and YouTube.</p>
+        <span class="work-link">Add link →</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Capabilities</p>
+  <h2 class="section-title">Tools &amp; Skills</h2>
+  <p class="section-sub">The technical stack behind the work.</p>
+  <div class="skills-layout">
+
+    <div>
+      <p class="skill-group-title">Video Production</p>
+      <div class="skill-item"><span class="skill-name">DaVinci Resolve</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:92%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Colour Grading</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Short-form Editing</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Sound Design</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:72%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Motion Graphics</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div></div>
+    </div>
+
+    <div>
+      <p class="skill-group-title">Social Media</p>
+      <div class="skill-item"><span class="skill-name">Instagram & TikTok</span><div class="skill-bar-wrap"><div class="skill-bar moss" style="width:90%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Content Strategy</span><div class="skill-bar-wrap"><div class="skill-bar moss" style="width:82%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Copywriting</span><div class="skill-bar-wrap"><div class="skill-bar moss" style="width:80%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Analytics & Reporting</span><div class="skill-bar-wrap"><div class="skill-bar moss" style="width:70%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Canva</span><div class="skill-bar-wrap"><div class="skill-bar moss" style="width:85%"></div></div></div>
+    </div>
+
+    <div>
+      <p class="skill-group-title">Other</p>
+      <div class="skill-item"><span class="skill-name">YouTube</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Client Communication</span><div class="skill-bar-wrap"><div class="skill-bar moss" style="width:85%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Project Management</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">CapCut</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Meta Business Suite</span><div class="skill-bar-wrap"><div class="skill-bar moss" style="width:78%"></div></div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div>
+      <p class="section-label">Get in Touch</p>
+      <h2 class="section-title">Let's work together</h2>
+      <p class="section-sub">Available for freelance projects and full-time positions in Gauteng and remotely across South Africa.</p>
+
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <p class="contact-detail-label">Location</p>
+          <p class="contact-detail-val">Gauteng, South Africa</p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <p class="contact-detail-label">Email</p>
+          <p class="contact-detail-val"><a href="mailto:your@email.com">your@email.com</a></p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">🔗</div>
+        <div>
+          <p class="contact-detail-label">LinkedIn</p>
+          <p class="contact-detail-val"><a href="#">linkedin.com/in/dianerasmus</a></p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">▶️</div>
+        <div>
+          <p class="contact-detail-label">YouTube</p>
+          <p class="contact-detail-val"><a href="#">Your channel link</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <form class="contact-form" onsubmit="return false;">
+        <div class="form-row">
+          <input class="form-input" type="text" placeholder="Name">
+          <input class="form-input" type="email" placeholder="Email">
+        </div>
+        <input class="form-input" type="text" placeholder="Subject">
+        <textarea class="form-input" placeholder="Tell me about your project..."></textarea>
+        <button class="btn-send" type="submit">Send Message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-name">Dian Erasmus</span>
+  <span class="footer-copy">© 2026 · Gauteng, South Africa</span>
+</footer>
+
+</body>
+</html>
